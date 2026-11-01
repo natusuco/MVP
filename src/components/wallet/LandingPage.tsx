@@ -224,6 +224,7 @@ const LandingPage: React.FC = () => {
               </p>
               <div className="mt-7 group relative inline-flex items-center">
                 <ConnectWalletButton userId="sousa" className={ideaLinkClass} />
+                
                 <ArrowRight
                   size={15}
                   className="absolute right-0 text-[#7EE8FF] group-hover:text-white transition-colors pointer-events-none"
