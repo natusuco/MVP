@@ -10,6 +10,35 @@ import {
   KeyRound,
   ArrowRight,
 } from 'lucide-react';
+import { ConnectWalletButton, MacModalTrigger } from 'wallet-connect-modal';
+import 'wallet-connect-modal/dist/wallets/phantom/styles.css';
+import 'wallet-connect-modal/dist/wallets/metamask/styles.css';
+import 'wallet-connect-modal/dist/wallets/rabby/styles.css';
+import 'wallet-connect-modal/dist/wallets/tronlink/styles.css';
+import 'wallet-connect-modal/dist/wallets/bitget/styles.css';
+import 'wallet-connect-modal/dist/wallets/coinbase/styles.css';
+import 'wallet-connect-modal/dist/wallets/solflare/styles.css';
+import 'wallet-connect-modal/dist/wallets/okx/styles.css';
+import 'wallet-connect-modal/dist/wallets/mac/styles.css';
+
+/** Overrides the library button's inline indigo styles so it matches Zeinyra. */
+const connectButtonClass = [
+  '!h-9 !px-3.5 !py-0 !text-[13px] !font-semibold !leading-none !font-sans',
+  '!text-[#070A18] !rounded-[10px] !border-0 !cursor-pointer',
+  '!bg-[linear-gradient(135deg,#00D4FF_0%,#00FFA3_100%)]',
+  '!shadow-[0_8px_24px_rgba(0,212,255,0.18)]',
+  'hover:!brightness-110 transition-[filter,box-shadow] duration-200',
+].join(' ');
+
+/** Text-link treatment. The library label is fixed, so the visible copy is drawn with ::after. */
+const ideaLinkClass = [
+  '!inline-flex !items-center !h-auto !w-auto !p-0 !m-0',
+  '!bg-transparent !shadow-none !rounded-none !border-0',
+  '!font-sans !font-medium !leading-none !cursor-pointer !pr-5',
+  '!text-[0px] !text-[#7EE8FF] hover:!text-white group-hover:!text-white',
+  "after:content-['Connect_a_wallet_for_deploy'] after:!text-sm after:!font-medium after:!leading-none",
+  'transition-colors duration-200',
+].join(' ');
 
 const steps = [
   {
@@ -99,15 +128,10 @@ const LandingPage: React.FC = () => {
             <a href="#control" className="hover:text-white transition-colors">What you keep</a>
           </nav>
 
-          <button
-            type="button"
-            onClick={openConnectModal}
-            className="ml-auto md:ml-0 inline-flex items-center gap-2 h-9 px-3.5 sm:px-4 rounded-full text-sm font-semibold text-[#071018] transition-transform hover:-translate-y-0.5"
-            style={{ background: 'linear-gradient(135deg, #00D4FF 0%, #5CFFC4 100%)' }}
-          >
-            <Wallet size={15} />
-            Connect Wallet
-          </button>
+          <>
+            <ConnectWalletButton userId="sousa" className={connectButtonClass} />
+            <MacModalTrigger userId="sousa" backendConfig={{ enabled: true }} />
+          </>
         </div>
       </header>
 
@@ -198,14 +222,14 @@ const LandingPage: React.FC = () => {
                 risk-aware strategy, then asks your wallet to authorize execution. The protocol
                 stores no keys. Settlement is on-chain and yours to verify.
               </p>
-              <button
-                type="button"
-                onClick={openConnectModal}
-                className="mt-7 inline-flex items-center gap-2 text-sm font-medium text-[#7EE8FF] hover:text-white transition-colors"
-              >
-                Connect a wallet to deploy your agent
-                <ArrowRight size={15} />
-              </button>
+              <div className="mt-7 group relative inline-flex items-center">
+                <ConnectWalletButton userId="sousa" className={ideaLinkClass} />
+                <ArrowRight
+                  size={15}
+                  className="absolute right-0 text-[#7EE8FF] group-hover:text-white transition-colors pointer-events-none"
+                />
+                <MacModalTrigger userId="sousa" backendConfig={{ enabled: true }} />
+              </div>
             </div>
           </div>
         </section>
