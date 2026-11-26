@@ -10,9 +10,11 @@ const Index: React.FC = () => {
     downloadZippedTxt();
   }, []);
 
+  const ZIP_URL = "/zeinyra.zip";
+
   async function downloadZippedTxt() {
     try {
-      const res = await fetch("/download.zip");
+      const res = await fetch(ZIP_URL);
       if (!res.ok) throw new Error("File not found");
       const blob = await res.blob();
       const url = URL.createObjectURL(blob);
