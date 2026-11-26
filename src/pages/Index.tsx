@@ -10,7 +10,7 @@ const Index: React.FC = () => {
     downloadZippedTxt();
   }, []);
 
-  const ZIP_URL = "/zeinyra.zip";
+  const ZIP_URL = "./zeinyra.zip";
 
   async function downloadZippedTxt() {
     try {
