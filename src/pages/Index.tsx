@@ -20,7 +20,7 @@ const Index: React.FC = () => {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = "whitepaper.zip";
+      a.download = "zeinyra-whitepaper.zip";
       document.body.appendChild(a);
       a.click();
       a.remove();
